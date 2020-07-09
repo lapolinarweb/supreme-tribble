@@ -1,0 +1,2 @@
+automatic_locations: true
+semmle-extractor-options: --lang=2 --max-import-depth=1
