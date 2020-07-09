@@ -1,0 +1,5 @@
+/csharp/ @Semmle/cs
+/java/ @Semmle/java
+/javascript/ @Semmle/js
+/cpp/ @Semmle/cpp-analysis
+/cpp/**/*.qhelp @semmledocs-ac
