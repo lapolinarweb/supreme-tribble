@@ -1,0 +1,937 @@
+#-----| __va_list_tag::operator=() -> __va_list_tag &
+#-----|   params: 
+#-----| __va_list_tag::operator=() -> __va_list_tag &
+#-----|   params: 
+#-----| operator delete(void *) -> void
+#-----|   params: 
+#-----|     0: p#0
+#-----|         Type = void *
+#-----| operator new(unsigned long) -> void *
+#-----|   params: 
+#-----|     0: p#0
+#-----|         Type = unsigned long
+AddressOf.c:
+#    1| AddressOf(int) -> void
+#    1|   params: 
+#    1|     0: i
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: declaration
+#    2|       0: definition of j
+#    2|           Type = int *
+#    2|         init: initializer for j
+#    2|           expr: & ...
+#    2|               Type = int *
+#    2|               ValueCategory = prvalue
+#    2|             0: i
+#    2|                 Type = int
+#    2|                 ValueCategory = lvalue
+#    3|     1: return ...
+ArrayToPointer.c:
+#    5| ArrayToPointer() -> void
+#    5|   params: 
+#    6|   body: { ... }
+#    7|     0: declaration
+#    7|       0: definition of c
+#    7|           Type = char[]
+#    7|         init: initializer for c
+#    7|           expr: hello
+#    7|               Type = char[6]
+#    7|               Value = "hello"
+#    7|               ValueCategory = lvalue
+#    8|     1: declaration
+#    8|       0: definition of s
+#    8|           Type = S
+#    9|     2: ExprStmt
+#    9|       0: ... = ...
+#    9|           Type = char *
+#    9|           ValueCategory = prvalue
+#    9|         0: name
+#    9|             Type = char *
+#    9|             ValueCategory = lvalue
+#    9|           -1: s
+#    9|               Type = S
+#    9|               ValueCategory = lvalue
+#    9|         1: array to pointer conversion
+#    9|             Type = char *
+#    9|             ValueCategory = prvalue
+#    9|           expr: c
+#    9|               Type = char[6]
+#    9|               ValueCategory = lvalue
+#   10|     3: return ...
+Cast.c:
+#    1| Cast(char *, void *) -> void
+#    1|   params: 
+#    1|     0: c
+#    1|         Type = char *
+#    1|     1: v
+#    1|         Type = void *
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = char *
+#    2|           ValueCategory = prvalue
+#    2|         0: c
+#    2|             Type = char *
+#    2|             ValueCategory = lvalue
+#    2|         1: (char *)...
+#    2|             Conversion = pointer conversion
+#    2|             Type = char *
+#    2|             ValueCategory = prvalue
+#    2|           expr: v
+#    2|               Type = void *
+#    2|               ValueCategory = prvalue(load)
+#    3|     1: return ...
+ConditionDecl.cpp:
+#    1| ConditionDecl() -> void
+#    1|   params: 
+#    1|   body: { ... }
+#    2|     0: declaration
+#    2|       0: definition of j
+#    2|           Type = int
+#    2|         init: initializer for j
+#    2|           expr: 0
+#    2|               Type = int
+#    2|               Value = 0
+#    2|               ValueCategory = prvalue
+#    3|     1: while (...) ...
+#    3|       0: (condition decl)
+#    3|           Type = bool
+#    3|           ValueCategory = prvalue
+#    3|         0: (bool)...
+#    3|             Conversion = conversion to bool
+#    3|             Type = bool
+#    3|             ValueCategory = prvalue
+#    3|           expr: k
+#    3|               Type = int
+#    3|               ValueCategory = prvalue(load)
+#    3|       1: { ... }
+#    5|     2: return ...
+ConstructorCall.cpp:
+#    1| C::C(C &&) -> void
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = C &&
+#    1| C::C(const C &) -> void
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = const C &
+#    1| C::operator=(C &&) -> C &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = C &&
+#    1| C::operator=(const C &) -> C &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = const C &
+#    3| C::C(int) -> void
+#    3|   params: 
+#    3|     0: i
+#    3|         Type = int
+#    3|   initializations: 
+#    3|   body: { ... }
+#    4|     0: return ...
+#    7| D::D(D &&) -> void
+#    7|   params: 
+#-----|     0: p#0
+#-----|         Type = D &&
+#    7| D::D(const D &) -> void
+#    7|   params: 
+#-----|     0: p#0
+#-----|         Type = const D &
+#    7| D::operator=(D &&) -> D &
+#    7|   params: 
+#-----|     0: p#0
+#-----|         Type = D &&
+#    7| D::operator=(const D &) -> D &
+#    7|   params: 
+#-----|     0: p#0
+#-----|         Type = const D &
+#    9| D::D() -> void
+#    9|   params: 
+#    9|   initializations: 
+#    9|   body: { ... }
+#   10|     0: return ...
+#   13| E::operator=(E &&) -> E &
+#   13|   params: 
+#-----|     0: p#0
+#-----|         Type = E &&
+#   13| E::operator=(const E &) -> E &
+#   13|   params: 
+#-----|     0: p#0
+#-----|         Type = const E &
+#   17| ConstructorCall(C *, D *, E *) -> void
+#   17|   params: 
+#   17|     0: c
+#   17|         Type = C *
+#   17|     1: d
+#   17|         Type = D *
+#   17|     2: e
+#   17|         Type = E *
+#   17|   body: { ... }
+#   18|     0: ExprStmt
+#   18|       0: ... = ...
+#   18|           Type = C *
+#   18|           ValueCategory = lvalue
+#   18|         0: c
+#   18|             Type = C *
+#   18|             ValueCategory = lvalue
+#   18|         1: new
+#   18|             Type = C *
+#   18|             ValueCategory = prvalue
+#   18|           1: call to C
+#   18|               Type = void
+#   18|               ValueCategory = prvalue
+#   18|             0: 5
+#   18|                 Type = int
+#   18|                 Value = 5
+#   18|                 ValueCategory = prvalue
+#   19|     1: ExprStmt
+#   19|       0: ... = ...
+#   19|           Type = D *
+#   19|           ValueCategory = lvalue
+#   19|         0: d
+#   19|             Type = D *
+#   19|             ValueCategory = lvalue
+#   19|         1: new
+#   19|             Type = D *
+#   19|             ValueCategory = prvalue
+#   19|           1: call to D
+#   19|               Type = void
+#   19|               ValueCategory = prvalue
+#   20|     2: ExprStmt
+#   20|       0: ... = ...
+#   20|           Type = E *
+#   20|           ValueCategory = lvalue
+#   20|         0: e
+#   20|             Type = E *
+#   20|             ValueCategory = lvalue
+#   20|         1: new
+#   20|             Type = E *
+#   20|             ValueCategory = prvalue
+#   20|           1: 0
+#   20|               Type = E
+#   20|               Value = 0
+#   20|               ValueCategory = prvalue
+#   21|     3: return ...
+Conversion1.c:
+#    1| Conversion1() -> void
+#    1|   params: 
+#    1|   body: { ... }
+#    2|     0: declaration
+#    2|       0: definition of i
+#    2|           Type = int
+#    2|         init: initializer for i
+#    2|           expr: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 1
+#    2|               ValueCategory = prvalue
+#    2|             expr: 1
+#    2|                 Type = int
+#    2|                 Value = 1
+#    2|                 ValueCategory = prvalue
+#    3|     1: return ...
+Conversion2.c:
+#    1| Conversion2(int) -> void
+#    1|   params: 
+#    1|     0: x
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = prvalue
+#    2|         0: x
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: ... + ...
+#    2|             Type = int
+#    2|             Value = 12
+#    2|             ValueCategory = prvalue
+#    2|           0: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 5
+#    2|               ValueCategory = prvalue
+#    2|             expr: 5
+#    2|                 Type = int
+#    2|                 Value = 5
+#    2|                 ValueCategory = prvalue
+#    2|           1: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 7
+#    2|               ValueCategory = prvalue
+#    2|             expr: 7
+#    2|                 Type = int
+#    2|                 Value = 7
+#    2|                 ValueCategory = prvalue
+#    3|     1: return ...
+Conversion3.cpp:
+#    1| Conversion3(int) -> void
+#    1|   params: 
+#    1|     0: x
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = lvalue
+#    2|         0: x
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: ... + ...
+#    2|             Type = int
+#    2|             Value = 8
+#    2|             ValueCategory = prvalue
+#    2|           0: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 1
+#    2|               ValueCategory = prvalue
+#    2|             expr: (bool)...
+#    2|                 Conversion = conversion to bool
+#    2|                 Type = bool
+#    2|                 Value = 1
+#    2|                 ValueCategory = prvalue
+#    2|               expr: (int)...
+#    2|                   Conversion = integral conversion
+#    2|                   Type = int
+#    2|                   Value = 1
+#    2|                   ValueCategory = prvalue
+#    2|                 expr: 5
+#    2|                     Type = int
+#    2|                     Value = 5
+#    2|                     ValueCategory = prvalue
+#    2|           1: (...)
+#    2|               Type = int
+#    2|               Value = 7
+#    2|               ValueCategory = prvalue
+#    2|             expr: (int)...
+#    2|                 Conversion = integral conversion
+#    2|                 Type = int
+#    2|                 Value = 7
+#    2|                 ValueCategory = prvalue
+#    2|               expr: 7
+#    2|                   Type = int
+#    2|                   Value = 7
+#    2|                   ValueCategory = prvalue
+#    3|     1: return ...
+Conversion4.c:
+#    1| Conversion4(int) -> void
+#    1|   params: 
+#    1|     0: x
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = prvalue
+#    2|         0: x
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: (...)
+#    2|             Type = int
+#    2|             Value = 7
+#    2|             ValueCategory = prvalue
+#    2|           expr: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 7
+#    2|               ValueCategory = prvalue
+#    2|             expr: 7
+#    2|                 Type = int
+#    2|                 Value = 7
+#    2|                 ValueCategory = prvalue
+#    3|     1: return ...
+DestructorCall.cpp:
+#    3| C::~C() -> void
+#    3|   params: 
+#    3|   body: { ... }
+#    4|     0: return ...
+#    3|   destructions: 
+#   11| DestructorCall(C *, D *) -> void
+#   11|   params: 
+#   11|     0: c
+#   11|         Type = C *
+#   11|     1: d
+#   11|         Type = D *
+#   11|   body: { ... }
+#   12|     0: ExprStmt
+#   12|       0: delete
+#   12|           Type = void
+#   12|           ValueCategory = prvalue
+#   12|         1: call to ~C
+#   12|             Type = void
+#   12|             ValueCategory = prvalue
+#   12|           -1: c
+#   12|               Type = C *
+#   12|               ValueCategory = prvalue(load)
+#   13|     1: ExprStmt
+#   13|       0: delete
+#   13|           Type = void
+#   13|           ValueCategory = prvalue
+#   13|         3: d
+#   13|             Type = D *
+#   13|             ValueCategory = prvalue(load)
+#   14|     2: return ...
+DynamicCast.cpp:
+#    1| Base::Base() -> void
+#    1|   params: 
+#    1| Base::Base(Base &&) -> void
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = Base &&
+#    1| Base::Base(const Base &) -> void
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = const Base &
+#    1| Base::operator=(Base &&) -> Base &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = Base &&
+#    1| Base::operator=(const Base &) -> Base &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = const Base &
+#-----|   body: { ... }
+#-----|     0: return ...
+#-----|       0: (reference to)
+#-----|           Type = Base &
+#-----|           ValueCategory = prvalue
+#-----|         expr: * ...
+#-----|             Type = Base
+#-----|             ValueCategory = lvalue
+#-----|           0: this
+#-----|               Type = Base *
+#-----|               ValueCategory = prvalue(load)
+#    2| Base::f() -> void
+#    2|   params: 
+#    2|   body: { ... }
+#    2|     0: return ...
+#    4| Derived::Derived() -> void
+#    4|   params: 
+#    4| Derived::Derived(Derived &&) -> void
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = Derived &&
+#    4| Derived::Derived(const Derived &) -> void
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = const Derived &
+#    4| Derived::operator=(Derived &&) -> Derived &
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = Derived &&
+#    4| Derived::operator=(const Derived &) -> Derived &
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = const Derived &
+#-----|   body: { ... }
+#-----|     0: ExprStmt
+#-----|       0: (reference dereference)
+#-----|           Type = Base
+#-----|           ValueCategory = lvalue
+#    4|         expr: call to operator=
+#    4|             Type = Base &
+#    4|             ValueCategory = prvalue
+#-----|           -1: (Base *)...
+#-----|               Conversion = base class conversion
+#-----|               Type = Base *
+#-----|               ValueCategory = prvalue
+#-----|             expr: this
+#-----|                 Type = Derived *
+#-----|                 ValueCategory = prvalue(load)
+#-----|           0: (reference to)
+#-----|               Type = const Base &
+#-----|               ValueCategory = prvalue
+#-----|             expr: * ...
+#-----|                 Type = const Base
+#-----|                 ValueCategory = lvalue
+#-----|               0: (const Base *)...
+#-----|                   Conversion = base class conversion
+#-----|                   Type = const Base *
+#-----|                   ValueCategory = prvalue
+#-----|                 expr: & ...
+#-----|                     Type = const Derived *
+#-----|                     ValueCategory = prvalue
+#-----|                   0: (reference dereference)
+#-----|                       Type = const Derived
+#-----|                       ValueCategory = lvalue
+#-----|                     expr: p#0
+#-----|                         Type = const Derived &
+#-----|                         ValueCategory = prvalue(load)
+#-----|     1: return ...
+#-----|       0: (reference to)
+#-----|           Type = Derived &
+#-----|           ValueCategory = prvalue
+#-----|         expr: * ...
+#-----|             Type = Derived
+#-----|             ValueCategory = lvalue
+#-----|           0: this
+#-----|               Type = Derived *
+#-----|               ValueCategory = prvalue(load)
+#    5| Derived::f() -> void
+#    5|   params: 
+#    5|   body: { ... }
+#    5|     0: return ...
+#    8| DynamicCast(Base *, Derived *) -> void
+#    8|   params: 
+#    8|     0: bp
+#    8|         Type = Base *
+#    8|     1: d
+#    8|         Type = Derived *
+#    8|   body: { ... }
+#    9|     0: ExprStmt
+#    9|       0: ... = ...
+#    9|           Type = Derived *
+#    9|           ValueCategory = lvalue
+#    9|         0: d
+#    9|             Type = Derived *
+#    9|             ValueCategory = lvalue
+#    9|         1: dynamic_cast<Derived *>...
+#    9|             Conversion = dynamic_cast
+#    9|             Type = Derived *
+#    9|             ValueCategory = prvalue
+#    9|           expr: bp
+#    9|               Type = Base *
+#    9|               ValueCategory = prvalue(load)
+#   10|     1: return ...
+#   12| DynamicCastRef(Base &, Derived &) -> void
+#   12|   params: 
+#   12|     0: bp
+#   12|         Type = Base &
+#   12|     1: d
+#   12|         Type = Derived &
+#   12|   body: { ... }
+#   13|     0: ExprStmt
+#   13|       0: (reference dereference)
+#   13|           Type = Derived
+#   13|           ValueCategory = lvalue
+#   13|         expr: call to operator=
+#   13|             Type = Derived &
+#   13|             ValueCategory = prvalue
+#   13|           -1: (reference dereference)
+#   13|               Type = Derived
+#   13|               ValueCategory = lvalue
+#   13|             expr: d
+#   13|                 Type = Derived &
+#   13|                 ValueCategory = prvalue(load)
+#   13|           0: (reference to)
+#   13|               Type = const Derived &
+#   13|               ValueCategory = prvalue
+#   13|             expr: (const Derived)...
+#   13|                 Conversion = glvalue conversion
+#   13|                 Type = const Derived
+#   13|                 ValueCategory = lvalue
+#   13|               expr: dynamic_cast<Derived>...
+#   13|                   Conversion = dynamic_cast
+#   13|                   Type = Derived
+#   13|                   ValueCategory = lvalue
+#   13|                 expr: (reference dereference)
+#   13|                     Type = Base
+#   13|                     ValueCategory = lvalue
+#   13|                   expr: bp
+#   13|                       Type = Base &
+#   13|                       ValueCategory = prvalue(load)
+#   14|     1: return ...
+Parenthesis.c:
+#    1| Parenthesis(int) -> void
+#    1|   params: 
+#    1|     0: i
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = prvalue
+#    2|         0: i
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: ... * ...
+#    2|             Type = int
+#    2|             ValueCategory = prvalue
+#    2|           0: (...)
+#    2|               Type = int
+#    2|               ValueCategory = prvalue
+#    2|             expr: ... + ...
+#    2|                 Type = int
+#    2|                 ValueCategory = prvalue
+#    2|               0: i
+#    2|                   Type = int
+#    2|                   ValueCategory = prvalue(load)
+#    2|               1: 1
+#    2|                   Type = int
+#    2|                   Value = 1
+#    2|                   ValueCategory = prvalue
+#    2|           1: 2
+#    2|               Type = int
+#    2|               Value = 2
+#    2|               ValueCategory = prvalue
+#    3|     1: return ...
+PointerDereference.c:
+#    1| PointerDereference(int *, int) -> void
+#    1|   params: 
+#    1|     0: i
+#    1|         Type = int *
+#    1|     1: j
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = prvalue
+#    2|         0: j
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: * ...
+#    2|             Type = int
+#    2|             ValueCategory = prvalue(load)
+#    2|           0: i
+#    2|               Type = int *
+#    2|               ValueCategory = prvalue(load)
+#    3|     1: return ...
+ReferenceDereference.cpp:
+#    4| ReferenceDereference(int &, int) -> void
+#    4|   params: 
+#    4|     0: i
+#    4|         Type = int &
+#    4|     1: j
+#    4|         Type = int
+#    4|   body: { ... }
+#    5|     0: ExprStmt
+#    5|       0: ... = ...
+#    5|           Type = int
+#    5|           ValueCategory = lvalue
+#    5|         0: j
+#    5|             Type = int
+#    5|             ValueCategory = lvalue
+#    5|         1: (reference dereference)
+#    5|             Type = int
+#    5|             ValueCategory = prvalue(load)
+#    5|           expr: i
+#    5|               Type = int &
+#    5|               ValueCategory = prvalue(load)
+#    6|     1: return ...
+ReferenceTo.cpp:
+#    1| ReferenceTo(int *) -> int &
+#    1|   params: 
+#    1|     0: i
+#    1|         Type = int *
+#    1|   body: { ... }
+#    2|     0: return ...
+#    2|       0: (reference to)
+#    2|           Type = int &
+#    2|           ValueCategory = prvalue
+#    2|         expr: * ...
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|           0: i
+#    2|               Type = int *
+#    2|               ValueCategory = prvalue(load)
+Sizeof.c:
+#    1| Sizeof(int[]) -> void
+#    1|   params: 
+#    1|     0: array
+#    1|         Type = int[]
+#    1|   body: { ... }
+#    2|     0: declaration
+#    2|       0: definition of i
+#    2|           Type = int
+#    2|         init: initializer for i
+#    2|           expr: (int)...
+#    2|               Conversion = integral conversion
+#    2|               Type = int
+#    2|               Value = 4
+#    2|               ValueCategory = prvalue
+#    2|             expr: sizeof(int)
+#    2|                 Type = unsigned long
+#    2|                 Value = 4
+#    2|                 ValueCategory = prvalue
+#    3|     1: declaration
+#    3|       0: definition of j
+#    3|           Type = int
+#    3|         init: initializer for j
+#    3|           expr: (int)...
+#    3|               Conversion = integral conversion
+#    3|               Type = int
+#    3|               Value = 8
+#    3|               ValueCategory = prvalue
+#    3|             expr: sizeof(<expr>)
+#    3|                 Type = unsigned long
+#    3|                 Value = 8
+#    3|                 ValueCategory = prvalue
+#    3|               0: (...)
+#    3|                   Type = int *
+#    3|                   ValueCategory = lvalue
+#    3|                 expr: array
+#    3|                     Type = int *
+#    3|                     ValueCategory = lvalue
+#    4|     2: return ...
+StatementExpr.c:
+#    1| StatementExpr() -> void
+#    1|   params: 
+#    1|   body: { ... }
+#    2|     0: declaration
+#    2|       0: definition of j
+#    2|           Type = int
+#    2|         init: initializer for j
+#    2|           expr: (statement expression)
+#    2|               Type = int
+#    2|               ValueCategory = prvalue
+#    3|     1: return ...
+StaticMemberAccess.cpp:
+#    1| X::operator=(X &&) -> X &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = X &&
+#    1| X::operator=(const X &) -> X &
+#    1|   params: 
+#-----|     0: p#0
+#-----|         Type = const X &
+#    5| StaticMemberAccess(int, X &) -> void
+#    5|   params: 
+#    5|     0: i
+#    5|         Type = int
+#    5|     1: xref
+#    5|         Type = X &
+#    5|   body: { ... }
+#    7|     0: ExprStmt
+#    7|       0: ... = ...
+#    7|           Type = int
+#    7|           ValueCategory = lvalue
+#    7|         0: i
+#    7|             Type = int
+#    7|             ValueCategory = lvalue
+#    7|         1: i
+#    7|             Type = int
+#    7|             ValueCategory = prvalue
+#    7|           -1: (reference dereference)
+#    7|               Type = X
+#    7|               ValueCategory = lvalue
+#    7|             expr: xref
+#    7|                 Type = X &
+#    7|                 ValueCategory = prvalue(load)
+#    9|     1: return ...
+Subscript.c:
+#    1| Subscript(int[], int) -> void
+#    1|   params: 
+#    1|     0: i
+#    1|         Type = int[]
+#    1|     1: j
+#    1|         Type = int
+#    1|   body: { ... }
+#    2|     0: ExprStmt
+#    2|       0: ... = ...
+#    2|           Type = int
+#    2|           ValueCategory = prvalue
+#    2|         0: j
+#    2|             Type = int
+#    2|             ValueCategory = lvalue
+#    2|         1: access to array
+#    2|             Type = int
+#    2|             ValueCategory = prvalue(load)
+#    2|           0: i
+#    2|               Type = int *
+#    2|               ValueCategory = prvalue(load)
+#    2|           1: 5
+#    2|               Type = int
+#    2|               Value = 5
+#    2|               ValueCategory = prvalue
+#    3|     1: return ...
+Throw.cpp:
+#    2| F::F(F &&) -> void
+#    2|   params: 
+#-----|     0: p#0
+#-----|         Type = F &&
+#    2|   initializations: 
+#    2|   body: { ... }
+#    2|     0: return ...
+#    2| F::F(const F &) -> void
+#    2|   params: 
+#-----|     0: p#0
+#-----|         Type = const F &
+#    2| F::operator=(F &&) -> F &
+#    2|   params: 
+#-----|     0: p#0
+#-----|         Type = F &&
+#    2| F::operator=(const F &) -> F &
+#    2|   params: 
+#-----|     0: p#0
+#-----|         Type = const F &
+#    4| F::F() -> void
+#    4|   params: 
+#    4|   initializations: 
+#    4|   body: { ... }
+#    4|     0: return ...
+#    6| Throw(int) -> void
+#    6|   params: 
+#    6|     0: i
+#    6|         Type = int
+#    6|   body: { ... }
+#    7|     0: try { ... }
+#    7|       0: { ... }
+#    8|         0: if (...) ... 
+#    8|           0: (bool)...
+#    8|               Conversion = conversion to bool
+#    8|               Type = bool
+#    8|               ValueCategory = prvalue
+#    8|             expr: i
+#    8|                 Type = int
+#    8|                 ValueCategory = prvalue(load)
+#    9|           1: ExprStmt
+#    9|             0: throw ...
+#    9|                 Type = E
+#    9|                 ValueCategory = prvalue
+#    9|               0: 0
+#    9|                   Type = E
+#    9|                   Value = 0
+#    9|                   ValueCategory = prvalue
+#   11|           2: ExprStmt
+#   11|             0: throw ...
+#   11|                 Type = F
+#   11|                 ValueCategory = prvalue
+#   11|               0: call to F
+#   11|                   Type = void
+#   11|                   ValueCategory = prvalue
+#   12|       1: <handler>
+#   12|         0: { ... }
+#   13|           0: ExprStmt
+#   13|             0: re-throw exception 
+#   13|                 Type = void
+#   13|                 ValueCategory = prvalue
+Typeid.cpp:
+#    4| std::type_info::operator=(const type_info &) -> type_info &
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = const type_info &
+#    4| std::type_info::operator=(type_info &&) -> type_info &
+#    4|   params: 
+#-----|     0: p#0
+#-----|         Type = type_info &&
+#    7| std::type_info::name() -> const char *
+#    7|   params: 
+#   13| Base::v() -> void
+#   13|   params: 
+#   13|   body: { ... }
+#   13|     0: return ...
+#   18| TypeId(Base *) -> void
+#   18|   params: 
+#   18|     0: bp
+#   18|         Type = Base *
+#   18|   body: { ... }
+#   19|     0: declaration
+#   19|       0: definition of name
+#   19|           Type = const char *
+#   19|         init: initializer for name
+#   19|           expr: call to name
+#   19|               Type = const char *
+#   19|               ValueCategory = prvalue
+#   19|             -1: typeid ...
+#   19|                 Type = const type_info
+#   19|                 ValueCategory = lvalue
+#   19|               0: bp
+#   19|                   Type = Base *
+#   19|                   ValueCategory = lvalue
+#   20|     1: return ...
+VacuousDestructorCall.cpp:
+#    2| CallDestructor<T>(T, T *) -> void
+#    2|   params: 
+#    2|     0: x
+#    2|         Type = T
+#    2|     1: y
+#    2|         Type = T *
+#    2|   body: { ... }
+#    3|     0: ExprStmt
+#    3|       0: call to expression
+#    3|           Type = unknown
+#    3|           ValueCategory = prvalue
+#    3|         0: Unknown literal
+#    3|             Type = unknown
+#    3|             ValueCategory = prvalue
+#    3|           -1: x
+#    3|               Type = T
+#    3|               ValueCategory = lvalue
+#    4|     1: ExprStmt
+#    4|       0: call to expression
+#    4|           Type = unknown
+#    4|           ValueCategory = prvalue
+#    4|         0: Unknown literal
+#    4|             Type = unknown
+#    4|             ValueCategory = prvalue
+#    4|           -1: y
+#    4|               Type = T *
+#    4|               ValueCategory = prvalue(load)
+#    5|     2: return ...
+#    2| CallDestructor<int>(int, int *) -> void
+#    2|   params: 
+#    2|     0: x
+#    2|         Type = int
+#    2|     1: y
+#    2|         Type = int *
+#    2|   body: { ... }
+#    3|     0: ExprStmt
+#    3|       0: (vacuous destructor call)
+#    3|           Type = void
+#    3|           ValueCategory = prvalue
+#    3|         0: x
+#    3|             Type = int
+#    3|             ValueCategory = lvalue
+#    4|     1: ExprStmt
+#    4|       0: (vacuous destructor call)
+#    4|           Type = void
+#    4|           ValueCategory = prvalue
+#    5|     2: return ...
+#    7| Vacuous(int) -> void
+#    7|   params: 
+#    7|     0: i
+#    7|         Type = int
+#    7|   body: { ... }
+#   10|     0: ExprStmt
+#   10|       0: call to CallDestructor
+#   10|           Type = void
+#   10|           ValueCategory = prvalue
+#   10|         0: i
+#   10|             Type = int
+#   10|             ValueCategory = prvalue(load)
+#   10|         1: & ...
+#   10|             Type = int *
+#   10|             ValueCategory = prvalue
+#   10|           0: i
+#   10|               Type = int
+#   10|               ValueCategory = lvalue
+#   11|     1: return ...
+Varargs.c:
+#    8| VarArgs(const char *) -> void
+#    8|   params: 
+#    8|     0: text
+#    8|         Type = const char *
+#    8|   body: { ... }
+#    9|     0: declaration
+#    9|       0: definition of args
+#    9|           Type = va_list
+#   10|     1: ExprStmt
+#   10|       0: __builtin_va_start
+#   10|           Type = void
+#   10|           ValueCategory = prvalue
+#   10|         0: array to pointer conversion
+#   10|             Type = __va_list_tag *
+#   10|             ValueCategory = prvalue
+#   10|           expr: args
+#   10|               Type = va_list
+#   10|               ValueCategory = lvalue
+#   10|         1: text
+#   10|             Type = const char *
+#   10|             ValueCategory = lvalue
+#   11|     2: ExprStmt
+#   11|       0: __builtin_va_end
+#   11|           Type = void
+#   11|           ValueCategory = prvalue
+#   11|         0: array to pointer conversion
+#   11|             Type = __va_list_tag *
+#   11|             ValueCategory = prvalue
+#   11|           expr: args
+#   11|               Type = va_list
+#   11|               ValueCategory = lvalue
+#   12|     3: return ...
