@@ -1,0 +1,61 @@
+| example.c:15:37:15:37 | b | example.c:19:6:19:6 | b |
+| example.c:15:44:15:46 | pos | example.c:24:24:24:26 | pos |
+| example.c:15:44:15:46 | pos | example.c:28:23:28:25 | pos |
+| example.c:17:19:17:22 | {...} | example.c:24:2:24:7 | coords |
+| example.c:17:19:17:22 | {...} | example.c:24:13:24:18 | coords |
+| example.c:17:19:17:22 | {...} | example.c:26:2:26:7 | coords |
+| example.c:17:19:17:22 | {...} | example.c:26:19:26:24 | coords |
+| example.c:24:2:24:7 | coords [post update] | example.c:26:2:26:7 | coords |
+| example.c:24:2:24:7 | coords [post update] | example.c:26:19:26:24 | coords |
+| example.c:24:13:24:18 | coords [post update] | example.c:24:2:24:7 | coords |
+| example.c:24:13:24:18 | coords [post update] | example.c:26:2:26:7 | coords |
+| example.c:24:13:24:18 | coords [post update] | example.c:26:19:26:24 | coords |
+| example.c:24:13:24:30 | ... = ... | example.c:24:2:24:30 | ... = ... |
+| example.c:24:24:24:30 | ... + ... | example.c:24:13:24:30 | ... = ... |
+| example.c:26:13:26:16 | call to getX | example.c:26:2:26:25 | ... = ... |
+| example.c:26:18:26:24 | ref arg & ... | example.c:26:2:26:7 | coords |
+| test.cpp:6:12:6:17 | call to source | test.cpp:7:8:7:9 | t1 |
+| test.cpp:6:12:6:17 | call to source | test.cpp:8:8:8:9 | t1 |
+| test.cpp:6:12:6:17 | call to source | test.cpp:9:8:9:9 | t1 |
+| test.cpp:6:12:6:17 | call to source | test.cpp:11:7:11:8 | t1 |
+| test.cpp:8:8:8:9 | t1 | test.cpp:8:3:8:9 | ... = ... |
+| test.cpp:8:8:8:9 | t1 | test.cpp:10:8:10:9 | t2 |
+| test.cpp:8:8:8:9 | t1 | test.cpp:15:8:15:9 | t2 |
+| test.cpp:8:8:8:9 | t1 | test.cpp:24:10:24:11 | t2 |
+| test.cpp:12:10:12:10 | 0 | test.cpp:12:5:12:10 | ... = ... |
+| test.cpp:12:10:12:10 | 0 | test.cpp:13:10:13:11 | t2 |
+| test.cpp:12:10:12:10 | 0 | test.cpp:15:8:15:9 | t2 |
+| test.cpp:12:10:12:10 | 0 | test.cpp:24:10:24:11 | t2 |
+| test.cpp:17:8:17:8 | 0 | test.cpp:17:3:17:8 | ... = ... |
+| test.cpp:17:8:17:8 | 0 | test.cpp:21:8:21:9 | t1 |
+| test.cpp:17:8:17:8 | 0 | test.cpp:23:23:23:24 | t1 |
+| test.cpp:17:8:17:8 | 0 | test.cpp:26:8:26:9 | t1 |
+| test.cpp:19:10:19:11 | t2 | test.cpp:19:5:19:11 | ... = ... |
+| test.cpp:23:15:23:16 | 0 | test.cpp:23:19:23:19 | i |
+| test.cpp:23:15:23:16 | 0 | test.cpp:23:27:23:27 | i |
+| test.cpp:23:27:23:27 | i | test.cpp:23:27:23:29 | ... ++ |
+| test.cpp:24:10:24:11 | t2 | test.cpp:23:23:23:24 | t1 |
+| test.cpp:24:10:24:11 | t2 | test.cpp:24:5:24:11 | ... = ... |
+| test.cpp:24:10:24:11 | t2 | test.cpp:26:8:26:9 | t1 |
+| test.cpp:430:48:430:54 | source1 | test.cpp:432:17:432:23 | source1 |
+| test.cpp:431:12:431:13 | 0 | test.cpp:432:11:432:13 | tmp |
+| test.cpp:431:12:431:13 | 0 | test.cpp:432:33:432:35 | tmp |
+| test.cpp:431:12:431:13 | 0 | test.cpp:433:8:433:10 | tmp |
+| test.cpp:432:10:432:13 | & ... | test.cpp:432:3:432:8 | call to memcpy |
+| test.cpp:432:10:432:13 | ref arg & ... | test.cpp:432:3:432:8 | call to memcpy |
+| test.cpp:432:10:432:13 | ref arg & ... | test.cpp:432:33:432:35 | tmp |
+| test.cpp:432:10:432:13 | ref arg & ... | test.cpp:433:8:433:10 | tmp |
+| test.cpp:432:17:432:23 | source1 | test.cpp:432:10:432:13 | ref arg & ... |
+| test.cpp:436:53:436:59 | source1 | test.cpp:439:17:439:23 | source1 |
+| test.cpp:436:66:436:66 | b | test.cpp:441:7:441:7 | b |
+| test.cpp:437:12:437:13 | 0 | test.cpp:438:19:438:21 | tmp |
+| test.cpp:437:12:437:13 | 0 | test.cpp:439:11:439:13 | tmp |
+| test.cpp:437:12:437:13 | 0 | test.cpp:439:33:439:35 | tmp |
+| test.cpp:437:12:437:13 | 0 | test.cpp:440:8:440:10 | tmp |
+| test.cpp:437:12:437:13 | 0 | test.cpp:442:10:442:12 | tmp |
+| test.cpp:439:10:439:13 | & ... | test.cpp:439:3:439:8 | call to memcpy |
+| test.cpp:439:10:439:13 | ref arg & ... | test.cpp:439:3:439:8 | call to memcpy |
+| test.cpp:439:10:439:13 | ref arg & ... | test.cpp:439:33:439:35 | tmp |
+| test.cpp:439:10:439:13 | ref arg & ... | test.cpp:440:8:440:10 | tmp |
+| test.cpp:439:10:439:13 | ref arg & ... | test.cpp:442:10:442:12 | tmp |
+| test.cpp:439:17:439:23 | source1 | test.cpp:439:10:439:13 | ref arg & ... |
